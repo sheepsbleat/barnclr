@@ -33,6 +33,7 @@ export default class Navbar extends Component {
             />
           </div>
         </div>
+
         <div className="select-container">
           <Select value={this.state.format} onChange={this.handleChange}>
             <MenuItem value="hex">hex</MenuItem>
