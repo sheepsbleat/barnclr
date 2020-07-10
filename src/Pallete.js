@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import ColorBox from "./ColorBox";
 import "./Pallette.css";
 import Navbar from "./Navbar";
-
 export default class Pallete extends Component {
   state = {
     level: 500,
@@ -16,14 +15,11 @@ export default class Pallete extends Component {
     this.setState({ format: v });
   };
   render() {
-    const { colors } = this.props.pallette;
+    const { colors, paletteName: palletteName } = this.props.pallette;
+
     const { format } = this.state;
     const colorBoxes = colors[this.state.level].map((color) => (
-      <ColorBox
-        background={color[format]}
-        name={color.name}
-        key={Math.random()}
-      />
+      <ColorBox background={color[format]} name={color.name} key={color.id} />
     ));
     return (
       <div className="Pallete">
@@ -34,7 +30,10 @@ export default class Pallete extends Component {
         />
 
         <div className="Pallette-colors">{colorBoxes}</div>
-        {/* footer */}
+        <footer className="Pallette-footer">
+          {palletteName}
+          <span className="emoji">{this.props.pallette.emoji}</span>
+        </footer>
       </div>
     );
   }

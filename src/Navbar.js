@@ -3,18 +3,23 @@ import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 import "./Navbar.css";
 import Select from "@material-ui/core/Select";
-import { MenuItem } from "@material-ui/core";
+import { MenuItem, Snackbar } from "@material-ui/core";
+import CloseIcon from "@material-ui/icons/Close";
+import { IconButton } from "@material-ui/core";
 
 export default class Navbar extends Component {
   state = {
     format: "hex",
+    open: false,
   };
 
   handleChange = (e) => {
-    this.setState({ format: e.target.value });
+    this.setState({ format: e.target.value, open: true });
     this.props.handleChange(e.target.value);
   };
-
+  closeSnackBar = () => {
+    this.setState({ open: false });
+  };
   render() {
     return (
       <nav className="Navbar">
@@ -41,6 +46,26 @@ export default class Navbar extends Component {
             <MenuItem value="rgba">rgba</MenuItem>
           </Select>
         </div>
+        <Snackbar
+          anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+          open={this.state.open}
+          autoHideDuration={3000}
+          onClose={this.closeSnackBar}
+          message={
+            <span className="message-id">
+              Format changed to {this.state.format.toUpperCase()}!
+            </span>
+          }
+          action={[
+            <IconButton
+              onClick={this.closeSnackBar}
+              color="inherit"
+              key="close"
+            >
+              <CloseIcon />
+            </IconButton>,
+          ]}
+        />
       </nav>
     );
   }
