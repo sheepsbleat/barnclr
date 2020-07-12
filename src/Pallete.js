@@ -15,11 +15,17 @@ export default class Pallete extends Component {
     this.setState({ format: v });
   };
   render() {
-    const { colors, paletteName: palletteName } = this.props.pallette;
+    const { colors, paletteName: palletteName, id } = this.props.pallette;
 
     const { format } = this.state;
     const colorBoxes = colors[this.state.level].map((color) => (
-      <ColorBox background={color[format]} name={color.name} key={color.id} />
+      <ColorBox
+        id={color.id}
+        palletteId={id}
+        background={color[format]}
+        name={color.name}
+        key={color.id}
+      />
     ));
     return (
       <div className="Pallete">

@@ -4,6 +4,7 @@ import seedColors from "./seedColors";
 import { generatePallette } from "./colorHelpers";
 import { Switch, Route } from "react-router-dom";
 import PalletteList from "./PalletteList";
+import SingleColorPallette from "./SingleColorPallette";
 
 class App extends Component {
   findPallette = (id) => {
@@ -30,6 +31,18 @@ class App extends Component {
                 )}
               />
             )}
+          />
+          <Route
+            path="/palette/:palletteId/:colorId"
+            render={(rProps) => (
+              <SingleColorPallette
+                colorId={rProps.match.params.colorId}
+                pallette={generatePallette(
+                  this.findPallette(rProps.match.params.palletteId)
+                )}
+              />
+            )}
+            exact
           />
         </Switch>
 
