@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import ColorBox from "./ColorBox";
 import "./Pallette.css";
 import Navbar from "./Navbar";
+import PalletteFooter from "./PalletteFooter";
 export default class Pallete extends Component {
   state = {
     level: 500,
@@ -36,10 +37,11 @@ export default class Pallete extends Component {
         />
 
         <div className="Pallette-colors">{colorBoxes}</div>
-        <footer className="Pallette-footer">
-          {palletteName}
-          <span className="emoji">{this.props.pallette.emoji}</span>
-        </footer>
+
+        <PalletteFooter
+          palletteName={palletteName}
+          emoji={this.props.pallette.emoji}
+        />
       </div>
     );
   }

@@ -21,24 +21,30 @@ export default class Navbar extends Component {
   closeSnackBar = () => {
     this.setState({ open: false });
   };
+  static defaultProps = {
+    showSlider: true,
+  };
   render() {
     return (
       <nav className="Navbar">
         <div className="logo">
           <Link to="/">barncolor</Link>
         </div>
-        <div className="slider-container">
-          <span>Level: {this.props.level}</span>
-          <div className="slider">
-            <Slider
-              defaultValue={this.props.level}
-              min={100}
-              max={900}
-              step={100}
-              onAfterChange={this.props.changeLevel}
-            />
+        {this.props.showSlider && (
+          <div className="slider-container">
+            <span>Level: {this.props.level}</span>
+
+            <div className="slider">
+              <Slider
+                defaultValue={this.props.level}
+                min={100}
+                max={900}
+                step={100}
+                onAfterChange={this.props.changeLevel}
+              />
+            </div>
           </div>
-        </div>
+        )}
 
         <div className="select-container">
           <Select value={this.state.format} onChange={this.handleChange}>
