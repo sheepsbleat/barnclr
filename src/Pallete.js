@@ -4,16 +4,7 @@ import "./Pallette.css";
 import Navbar from "./Navbar";
 import PalletteFooter from "./PalletteFooter";
 import { withStyles } from "@material-ui/styles";
-const styles = {
-  pallette: {
-    height: "100vh",
-    display: "flex",
-    flexDirection: "column",
-  },
-  palletteColors: {
-    height: "90%",
-  },
-};
+import styles from "./styles/colorPalletteStyles";
 class Pallete extends Component {
   state = {
     level: 500,
