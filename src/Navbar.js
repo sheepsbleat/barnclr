@@ -7,8 +7,43 @@ import { MenuItem, Snackbar } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
 import { IconButton } from "@material-ui/core";
 import { Link } from "react-router-dom";
+import { withStyles } from "@material-ui/styles";
+const styles = {
+  Navbar: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "flex-start",
+    height: "10vh",
+  },
+  grid: {
+    display: "grid",
+    gridTemplateColumns: "1fr 1fr",
+    "& span": {
+      marginRight: "20px",
+    },
+  },
+  logo: {
+    marginRight: "15px",
+    padding: "0 13px",
+    fontSize: "22px",
+    background: "#eceff1",
+    height: "100%",
+    fontFamily: '"Roboto", sans-serif',
+    display: "flex",
+    alignItems: "center",
+    "& a": {
+      textDecoration: "none",
+      color: "black",
+    },
+  },
+  slider: {
+    "& .rc-slider-rail": {
+      height: "8px",
+    },
+  },
+};
 
-export default class Navbar extends Component {
+class Navbar extends Component {
   state = {
     format: "hex",
     open: false,
@@ -25,16 +60,17 @@ export default class Navbar extends Component {
     showSlider: true,
   };
   render() {
+    const { classes } = this.props;
     return (
-      <nav className="Navbar">
-        <div className="logo">
+      <nav className={classes.Navbar}>
+        <div className={classes.logo}>
           <Link to="/">barncolor</Link>
         </div>
         {this.props.showSlider && (
-          <div className="slider-container">
+          <div className={classes.grid}>
             <span>Level: {this.props.level}</span>
 
-            <div className="slider">
+            <div className={classes.slider}>
               <Slider
                 defaultValue={this.props.level}
                 min={100}
@@ -77,3 +113,4 @@ export default class Navbar extends Component {
     );
   }
 }
+export default withStyles(styles)(Navbar);

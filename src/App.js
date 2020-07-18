@@ -5,6 +5,7 @@ import { generatePallette } from "./colorHelpers";
 import { Switch, Route } from "react-router-dom";
 import PalletteList from "./PalletteList";
 import SingleColorPallette from "./SingleColorPallette";
+import NewPalletteForm from "./NewPalletteForm";
 
 class App extends Component {
   findPallette = (id) => {
@@ -16,6 +17,7 @@ class App extends Component {
     return (
       <div className="App">
         <Switch>
+          <Route exact path="/palette/new" render={() => <NewPalletteForm />} />
           <Route
             path="/"
             exact
