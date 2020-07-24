@@ -11,10 +11,10 @@ const styles = {
     marginBottom: "-3.5px",
   },
 };
-function DraggableColorBox({ color, classes }) {
+function DraggableColorBox({ color, classes, name }) {
   return (
     <div className={classes.root} style={{ backgroundColor: color }}>
-      {color}
+      {name}
     </div>
   );
 }
