@@ -23,11 +23,13 @@ class App extends Component {
     return (
       <div className="App">
         <Switch>
-          <Route exact path="/palette/new" render={(rp) => <NewPalletteForm {...rp} savePallette={this.savePallette}/>} />
+          <Route exact path="/palette/new" render={(rp) => <NewPalletteForm
+          pallettes={this.state.pallettes}
+           {...rp} savePallette={this.savePallette}/>} />
           <Route
             path="/"
             exact
-            render={(rp) => <PalletteList {...rp} pallettes={this.state.pallettes} />}
+            render={(rp) => <PalletteList {...rp}  pallettes={this.state.pallettes} />}
           />
           <Route
             path="/palette/:id"
