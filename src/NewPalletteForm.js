@@ -119,6 +119,17 @@ class NewPalletteForm extends React.Component {
   handleChange = (e) => {
     this.setState({ newName: e.target.value });
   };
+  savePallette = () => {
+    let newName = "New Palette"
+    const newPallette = {
+      paletteName: newName,
+      id: newName.toLowerCase().replace(/ /g, "-"),
+      colors: this.state.colors,
+
+    }
+    this.props.savePallette(newPallette);
+    this.props.history.push("/")
+  }
   render() {
     const { classes } = this.props;
     const { open, colors } = this.state;
@@ -131,6 +142,7 @@ class NewPalletteForm extends React.Component {
           className={classNames(classes.appBar, {
             [classes.appBarShift]: open,
           })}
+          color="default"
         >
           <Toolbar disableGutters={!open}>
             <IconButton
@@ -144,6 +156,9 @@ class NewPalletteForm extends React.Component {
             <Typography variant="h6" color="inherit" noWrap>
               Create a palette
             </Typography>
+            <Button onClick={this.savePallette} variant="contained" color="primary">
+              Save Palette
+            </Button>
           </Toolbar>
         </AppBar>
         <Drawer

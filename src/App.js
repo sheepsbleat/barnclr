@@ -8,20 +8,26 @@ import SingleColorPallette from "./SingleColorPallette";
 import NewPalletteForm from "./NewPalletteForm";
 
 class App extends Component {
+  state = {
+    pallettes: seedColors
+  }
   findPallette = (id) => {
-    return seedColors.find((pallette) => {
+    return this.state.pallettes.find((pallette) => {
       return pallette.id === id;
     });
   };
+  savePallette = (newPallette) => {
+    this.setState({pallettes: [...this.state.pallettes, newPallette]})
+  }
   render() {
     return (
       <div className="App">
         <Switch>
-          <Route exact path="/palette/new" render={() => <NewPalletteForm />} />
+          <Route exact path="/palette/new" render={(rp) => <NewPalletteForm {...rp} savePallette={this.savePallette}/>} />
           <Route
             path="/"
             exact
-            render={(rp) => <PalletteList {...rp} pallettes={seedColors} />}
+            render={(rp) => <PalletteList {...rp} pallettes={this.state.pallettes} />}
           />
           <Route
             path="/palette/:id"
@@ -48,7 +54,7 @@ class App extends Component {
           />
         </Switch>
 
-        {/* <Pallete pallette={generatePallette(seedColors[4])} /> */}
+        {/* <Pallete pallette={generatePallette(this.state.pallettes[4])} /> */}
       </div>
     );
   }
