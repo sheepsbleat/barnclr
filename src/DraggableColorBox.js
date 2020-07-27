@@ -12,7 +12,8 @@ const styles = {
     cursor: "pointer",
     marginBottom: "-3.5px",
     "&:hover svg": {
-      color: "white"
+      color: "white",
+      transform: "scale(1.5)"
     }
   },
   boxContent: {
@@ -29,15 +30,15 @@ const styles = {
     justifyContent: "space-between"
   },
   delete: {
-
+    transition: "all 0.3s ease-in-out",
   }
 };
-function DraggableColorBox({ color, classes, name }) {
+function DraggableColorBox({ handleClick, color, classes, name }) {
   return (
     <div className={classes.root} style={{ backgroundColor: color }}>
       <div className={classes.boxContent}>
         <span>{name}</span>
-        <span><DeleteIcon className={classes.delete} /></span>
+        <span><DeleteIcon onClick={handleClick} className={classes.delete} /></span>
       </div>
 
     </div>

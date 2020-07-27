@@ -5,15 +5,11 @@ import Drawer from "@material-ui/core/Drawer";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import List from "@material-ui/core/List";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
 import { ChromePicker } from "react-color";
 import { Button } from "@material-ui/core";
 import DraggableColorBox from "./DraggableColorBox";
@@ -135,10 +131,12 @@ class NewPalletteForm extends React.Component {
     this.props.savePallette(newPallette);
     this.props.history.push("/")
   }
+  removeColor = (colorName) => {
+    this.setState({ colors: this.state.colors.filter(color => color.name !== colorName) })
+  }
   render() {
     const { classes } = this.props;
-    const { open, colors } = this.state;
-
+    const { open } = this.state;
     return (
       <div className={classes.root}>
         <CssBaseline />
@@ -232,7 +230,7 @@ class NewPalletteForm extends React.Component {
         >
           <div className={classes.drawerHeader} />
           {this.state.colors.map((color) => (
-            <DraggableColorBox color={color.color} name={color.name} />
+            <DraggableColorBox key={color.name} handleClick={() => this.removeColor(color.name)} color={color.color} name={color.name} />
           ))}
         </main>
       </div>
